@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <array>
 
 #include "AdConstants.h"
 
@@ -27,6 +28,9 @@ struct VehicleType
 
 struct NeighborVehiclesType
 {
+    std::array<VehicleType, Ad::Constants::NUM_VEHICLES_ON_LANE> leftLaneVehicle;
+    std::array<VehicleType, Ad::Constants::NUM_VEHICLES_ON_LANE> centerLaneVehicle;
+    std::array<VehicleType, Ad::Constants::NUM_VEHICLES_ON_LANE> rightLaneVehicle;
 };
 
 } // namespace Types
