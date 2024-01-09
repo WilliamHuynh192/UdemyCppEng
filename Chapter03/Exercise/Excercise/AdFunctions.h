@@ -16,6 +16,15 @@ namespace Data
 
 Ad::Types::VehicleType init_ego_vehicle();
 
+void init_lanes_vehicle(
+    std::array<Ad::Types::VehicleType, Ad::Constants::NUM_VEHICLES_ON_LANE>& vehicleLane,
+    int index,
+    std::int32_t id,
+    Ad::Types::LaneAssociationType lane,
+    float speed_mps,
+    float distance_m
+);
+
 Ad::Types::NeighborVehiclesType init_vehicles();
 
 } // namespace Data

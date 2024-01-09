@@ -30,69 +30,86 @@ Ad::Types::VehicleType init_ego_vehicle()
     };
 }
 
+void init_lanes_vehicle(
+    std::array<Ad::Types::VehicleType, Ad::Constants::NUM_VEHICLES_ON_LANE>& vehicleLane,
+    int index,
+    std::int32_t id,
+    Ad::Types::LaneAssociationType lane,
+    float speed_mps,
+    float distance_m
+)
+{
+    Ad::Types::VehicleType vehicle
+    {
+        .id = id,
+        .lane = lane,
+        .speed_mps = speed_mps,
+        .distance_m = distance_m
+    };
+
+    vehicleLane[index] = vehicle;
+}
+
 Ad::Types::NeighborVehiclesType init_vehicles()
 {
     Ad::Types::NeighborVehiclesType neighborVehicles{};
 
     // Left lane
-    Ad::Types::VehicleType vehicle1
-    {
-        .id = 0,
-        .lane = Ad::Types::LaneAssociationType::LEFT,
-        .speed_mps = 40,
-        .distance_m = 69
-    };
+    init_lanes_vehicle(
+        neighborVehicles.leftLaneVehicle,
+        0,
+        0,
+        Ad::Types::LaneAssociationType::LEFT,
+        Ad::Utils::kph_to_mps(40),
+        69
+    );
 
-    Ad::Types::VehicleType vehicle2
-    {
-        .id = 1,
-        .lane = Ad::Types::LaneAssociationType::LEFT,
-        .speed_mps = 30,
-        .distance_m = 50
-    };
-
-    neighborVehicles.leftLaneVehicle[0] = vehicle1;
-    neighborVehicles.leftLaneVehicle[1] = vehicle2;
+    init_lanes_vehicle(
+        neighborVehicles.leftLaneVehicle,
+        1,
+        1,
+        Ad::Types::LaneAssociationType::LEFT,
+        Ad::Utils::kph_to_mps(30),
+        50
+    );
 
     // Center lane
-    Ad::Types::VehicleType vehicle3
-    {
-        .id = 2,
-        .lane = Ad::Types::LaneAssociationType::CENTER,
-        .speed_mps = 10,
-        .distance_m = 40
-    };
+    init_lanes_vehicle(
+        neighborVehicles.centerLaneVehicle,
+        0,
+        2,
+        Ad::Types::LaneAssociationType::CENTER,
+        Ad::Utils::kph_to_mps(24),
+        40
+    );
 
-    Ad::Types::VehicleType vehicle4
-    {
-        .id = 3,
-        .lane = Ad::Types::LaneAssociationType::CENTER,
-        .speed_mps = 70,
-        .distance_m = 35
-    };
-
-    neighborVehicles.centerLaneVehicle[0] = vehicle3;
-    neighborVehicles.centerLaneVehicle[1] = vehicle4;
+    init_lanes_vehicle(
+        neighborVehicles.leftLaneVehicle,
+        1,
+        3,
+        Ad::Types::LaneAssociationType::CENTER,
+        Ad::Utils::kph_to_mps(70),
+        35
+    );
 
     // Right lane
-    Ad::Types::VehicleType vehicle5
-    {
-        .id = 4,
-        .lane = Ad::Types::LaneAssociationType::RIGHT,
-        .speed_mps = 85,
-        .distance_m = 23
-    };
+    init_lanes_vehicle(
+        neighborVehicles.rightLaneVehicle,
+        0,
+        4,
+        Ad::Types::LaneAssociationType::RIGHT,
+        Ad::Utils::kph_to_mps(85),
+        23
+    );
 
-    Ad::Types::VehicleType vehicle6
-    {
-        .id = 5,
-        .lane = Ad::Types::LaneAssociationType::RIGHT,
-        .speed_mps = 100,
-        .distance_m = 17
-    };
-
-    neighborVehicles.rightLaneVehicle[0] = vehicle5;
-    neighborVehicles.rightLaneVehicle[1] = vehicle6;
+    init_lanes_vehicle(
+        neighborVehicles.rightLaneVehicle,
+        1,
+        5,
+        Ad::Types::LaneAssociationType::RIGHT,
+        Ad::Utils::kph_to_mps(100),
+        17
+    );
 }
 
 } // namespace Data
