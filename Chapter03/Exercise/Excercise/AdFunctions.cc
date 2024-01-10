@@ -113,4 +113,22 @@ Ad::Types::NeighborVehiclesType init_vehicles()
 }
 
 } // namespace Data
+
+namespace Visualize
+{
+
+void print_vehicle(const Ad::Types::VehicleType &vehicle)
+{
+    std::printf("Id: %d, Speed: %f, Distance: %fm\n", vehicle.id, vehicle.speed_mps, vehicle.distance_m);
+}
+
+void print_neighbor_vehicles(const Ad::Types::NeighborVehiclesType &vehicles)
+{
+    for (int i = 0 ; i < Ad::Constants::NUM_VEHICLES_ON_LANE; i++) {
+
+    }
+}
+
+} // namespace Visualize
+
 } // namespace Ad
